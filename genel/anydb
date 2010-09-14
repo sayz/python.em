@@ -15,7 +15,7 @@ db.close()
 db = anydbm.open("database", "r")
 # db artık bir sözlük
 for key in db.keys():
-    print repr(key), repr(db[key])
+        print repr(key), repr(db[key])
 
 
 
