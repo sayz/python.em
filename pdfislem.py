@@ -5,7 +5,7 @@ import warnings
 warnings.simplefilter("ignore", DeprecationWarning)
 
 from pyPdf import PdfFileWriter , PdfFileReader
-import sys
+import os, sys
 
 
 def kesit(dosya_yolu , sayfa1 , sayfa2=0):
@@ -72,6 +72,21 @@ def birlestir(dosya_yolu1 , dosya_yolu2):
         print "»» pdf oluşturuldu"
     except:         print "»» pdf oluşturulamadı"
 
+def toplu_birlestir(dizin):
+    """verilen dizinin içerisindeki tüm pdf dosyalarını birleştirir"""
+    try:
+        islem   = PdfFileWriter()
+        hedef   = open("data.pdf", "wb")
+        print 0
+        for dosya in os.listdir(dizin):
+            dosya = dizin + os.sep + dosya
+            kaynak  = PdfFileReader(open(dosya , "rb"))
+            for i in range(kaynak.getNumPages()):
+                islem.addPage(kaynak.getPage(i))
+        islem.write(hedef)
+        hedef.close()
+        print "»» pdf oluşturuldu"
+    except:         print "»» pdf oluşturulamadı"
 
 def parcala(dosya_yolu):
     """pdf dosyasının herbir sayfasından ayrı bir pdf oluşturur
@@ -88,5 +103,6 @@ def parcala(dosya_yolu):
             hedef.close()
             print "»» pdf oluşturuldu"
     except:         print "»» pdf oluşturulamadı"
+
 
 
