@@ -4,7 +4,7 @@
 def terstten_dosya_karakterleri_sayisi(dosya_yolu):
     dosya  = open( dosya_yolu , "r")
     okunan = dosya.read().decode("utf8")
-    
+    dosya.close()    
     k=0
     for i in okunan:
         if not 48 <= ord(i) <= 57:

@@ -1,1 +1,2 @@
-python kodlarım
+
+### çok çok çok genel python kodları
