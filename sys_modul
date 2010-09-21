@@ -7,16 +7,17 @@ import sys
 sys.argv
 
 # programın o noktada sonlanmasını sağlar
-#sys.exit()
+sys.exit()
 
-# betiğinin dil kodlaması
+# betiğin dil kodlaması
 sys.getdefaultencoding()
 
 # python'a ait path bilgileri
 sys.path
-# sys.path.append("/herhangi/bir/dizin")
-# path'de istediğin noktaya yol ekle
-# sys.path.insert(0, "/herhangi/bir/dizin")
+
+#path'de istediğin noktaya yol ekle
+sys.path.append("/herhangi/bir/dizin")
+sys.path.insert(0, "/herhangi/bir/dizin")
 
 # kullandığınız işletim sistemi bilgisi
 sys.platform
@@ -31,7 +32,7 @@ sys.version_info
 # satır atlamadan arka arkaya ekrana yazı yazdırır
 for i in 'emineker':
     sys.stdout.write(str(i))
-    #sys.stdout.flush()
+    sys.stdout.flush()
 
 # print fonksiyonunu yönlendirme
 dosya = open("log.txt", "w")
@@ -41,8 +42,6 @@ dosya.close()
 
 # print komutunu orjinaline döndürelim
 sys.stdout = sys.__stdout__
-
-
 
 
 

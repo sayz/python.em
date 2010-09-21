@@ -8,13 +8,12 @@
 #'emineker'                     group19
 #######################################
 
-import mechanize, cookielib, os, sys, re
-from BeautifulSoup import BeautifulSoup
+import mechanize, cookielib, os, sys, re, BeautifulSoup
 
 url   = "http://www.wallbase.net/wallpaper/"
 basla = 100106          # baslangic resmi numarasi
 test  = 3               # test icin resim sayisi
-dizin = os.getcwd()
+dizin = os.getcwd()     # dizin olarak çalışma dizinini seçelim siz değiştirebilirsiniz
 
 dizin = os.path.join( dizin , "foto" )      # indirilecek dosyalara dizin başlangıcı 
 if not os.path.isdir(dizin):
@@ -45,11 +44,12 @@ br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),max_time=1)
 
 # resmi indirme fonksiyonu
 def image_get(resim_no):
-        br.open(url+resim_no)     # sayfayi tarayici ile acmak
-        html = br.response().read() # sayfayi html olarak okumak
-        soup = BeautifulSoup(html)             # html'i beautifulsoup ile derlemek
+        br.open(url+resim_no)                           # sayfayi tarayici ile acmak
+        html = br.response().read()                     # sayfayi html olarak okumak
+        soup = BeautifulSoup.BeautifulSoup(html)        # html'i beautifulsoup ile derlemek
         resim_div = soup.find('div', {'id':'bigwall','class':'right'})        # resmin icinde bulundugu "div" bulur
         if not resim_div:
+                print '\n%s numaralı bulunamadı'%resim_no
                 return
         link   = resim_div.find('img').attrs[0][1]          # resmin linki
         uzanti = soup.find("span", {'class':re.compile('right imgtype*')})

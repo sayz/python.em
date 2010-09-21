@@ -37,7 +37,8 @@ filetype indent on
 set et
 set sw=8
 set smarttab
-map <f2> :w\|!python %<cr>"""
+map <f2> :w\|!python %<cr>
+map <f3> :w\|!gcc %<cr>"""
 
 dosya.write( hop )
 dosya.close()
