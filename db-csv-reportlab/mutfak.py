@@ -20,15 +20,14 @@ def baglan():
 
 def csvyukle(tablo, filename):
         try:
-                conn = baglan()
+                con = baglan()
         except MySQLdb.Error, e:
                 print "Error %d: %s" % (e.args[0], e.args[1])
                 sys.exit (1)
 
-        conn = baglan()
-        cursor = conn.cursor()
-        dosya = csv.reader(open(filename))
-        sutun = len(dosya.next())
+        cursor = con.cursor()
+        dosya  = csv.reader(open(filename))
+        sutun  = len(dosya.next())
 
         assert(sutun > 0)
         toplam = (sutun-1) * "%s, " + "%s"
@@ -62,7 +61,6 @@ def db_ara( tablo , ara ):
 def db_csv_olustur( tablo ):
         dosya = open('data.csv' , 'w')
         yazici = csv.writer( dosya )
-        yazici.writerow(baslik())    
         for i in db_baglan( tablo ):
                 yazici.writerow(i)
         dosya.close()
@@ -77,7 +75,6 @@ def csv_kopyala(dosya_yolu):
 
 def kucult_csv(dosya_yolu ):
         yazici = csv.writer( open('data.csv' , 'w') )
-        yazici.writerow(baslik())
         [yazici.writerow( [kucult(i) for i in liste] ) for liste in csv_oku(dosya_yolu)]
 
 
@@ -95,7 +92,8 @@ def csv_yaz(liste):
 
 
 def create_table(tablo):
-        cursor = cursor_baglan()
+        con    = baglan()
+        cursor = con.cursor()
         sql = """CREATE TABLE %s (
                  SIRA  INT(100) NOT NULL AUTO_INCREMENT ,
                  AD    VARCHAR(30) NOT NULL default '' ,
