@@ -18,6 +18,22 @@ def baglan():
                                passwd = "emineker",
                                db = 'deneme' ) #,cursorclass = MySQLdb.cursors.DictCursor,) # veritabanının sözlük halinde gelmesi için
 
+def create_table(tablo):
+        con    = baglan()
+        cursor = con.cursor()
+        sql = """CREATE TABLE %s (
+                 SIRA  INT(100) NOT NULL AUTO_INCREMENT ,
+                 AD    VARCHAR(30) NOT NULL default '' ,
+                 SOYAD VARCHAR(30) NOT NULL default '' ,
+                 TC_NO VARCHAR(30) NOT NULL default '' ,
+                 PRIMARY KEY (SIRA , TC_NO))""" %( tablo )
+        try:
+                cursor.execute(sql)
+                print "»» veritabanında " + tablo + " tablosu oluşturuldu"
+        except:
+                print "»» böyle bir tablo var veya bağlantı hatası"
+
+
 def csvyukle(tablo, filename):
         try:
                 con = baglan()
@@ -46,65 +62,38 @@ def csvyukle(tablo, filename):
         cursor.close()
         conn.close()
 
-
 def db_baglan( tablo ):
-        cursor = baglan().cursor()
+        con    = baglan()
+        cursor = con.cursor()
         cursor.execute("SELECT * FROM %s" % tablo)
         #cursor.rowcount  #tablodaki satır sayısı
-        return cursor.fetchall()
+        liste = cursor.fetchall()
+        con.close()
+        cursor.close()
+        return liste
 
+def csv_oku(dosya):
+        with open(dosya , 'r') as dosya:
+                okunan = csv.reader(dosya)
+                return [ [i for i in oge] for oge in okunan]
+
+def csv_yaz(liste):
+        with open('data.csv' , 'w') as dosya:
+                yazici = csv.writer(dosya)
+                [yazici.writerow(i) for i in liste]
 
 def db_ara( tablo , ara ):
         return [satir for satir in db_baglan( tablo ) if ara in satir]
 
-
 def db_csv_olustur( tablo ):
-        dosya = open('data.csv' , 'w')
-        yazici = csv.writer( dosya )
-        for i in db_baglan( tablo ):
-                yazici.writerow(i)
-        dosya.close()
-
+        csv_yaz( db_baglan( tablo ) )
 
 def csv_kopyala(dosya_yolu):
-        dosya = open('data.csv' , 'w')
-        yazici = csv.writer(dosya)
-        for liste in csv_oku(dosya_yolu):
-                yazici.writerow(liste)
+        csv_yaz( csv_oku( dosya_yolu ) )
+        
+def csv_kucult(dosya_yolu ):
+        csv_yaz( [[kucult(i) for i in liste] for liste in csv_oku(dosya_yolu)] )
 
-
-def kucult_csv(dosya_yolu ):
-        yazici = csv.writer( open('data.csv' , 'w') )
-        [yazici.writerow( [kucult(i) for i in liste] ) for liste in csv_oku(dosya_yolu)]
-
-
-def csv_oku(dosya):
-        okunan = csv.reader( open(dosya) )
-        return [ [i for i in oge] for oge in okunan][1:]
-
-
-def csv_yaz(liste):
-        dosya= open('data.csv' , 'w') 
-        yazici = csv.writer(dosya)
-        for i in liste:
-                yazici.writerow(i)        
-        dosya.close()  
-
-
-def create_table(tablo):
-        con    = baglan()
-        cursor = con.cursor()
-        sql = """CREATE TABLE %s (
-                 SIRA  INT(100) NOT NULL AUTO_INCREMENT ,
-                 AD    VARCHAR(30) NOT NULL default '' ,
-                 SOYAD VARCHAR(30) NOT NULL default '' ,
-                 TC_NO VARCHAR(30) NOT NULL default '' ,
-                 PRIMARY KEY (SIRA , TC_NO))""" %( tablo )
-        try:
-                cursor.execute(sql)
-                print "»» veritabanında " + tablo + " tablosu oluşturuldu"
-        except:
-                print "»» böyle bir tablo var veya bağlantı hatası"
 
 
 

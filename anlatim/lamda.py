@@ -34,8 +34,8 @@ aylar=["Ocak","Subat","Mart","Nisan","Mayis","Haziran",
 print filter(lambda x:x[0]=="M",aylar)
 # ['Mart' , 'Mayis']
 
-for i in range(2,8):  
-    sayilar=filter(lambda x:x==i or x%i,sayilar)  
+for i in range(2,8):
+	sayilar=filter(lambda x:x==i or x%i,sayilar)  
 print sayilar 
 # [1,2,3,5,7,11,13]
 
