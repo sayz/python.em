@@ -13,16 +13,14 @@
 
 import time
 
-
 # sleep() Fonksiyonu
 
 time.sleep(3) # kodu ile işlemlerinizi 3 saniye bekletebilirsiniz
 
-# fonksiyonu daha iyi anlamak için şu öğreği kullanın
+# fonksiyonu daha iyi anlamak için şu örneği kullanın
 for i in range(10):
         time.sleep(1)
         print i
-
 
 
 # strftime() Fonksiyonu
