@@ -22,4 +22,3 @@ def asal_sayilar(girilen):
 
 doctest.testmod()
 
-
