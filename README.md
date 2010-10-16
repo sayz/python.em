@@ -8,6 +8,7 @@
         db-csv-reportlab....» veritabanı ve pdf işlemleri
         modul...............» modüllerinin açıklamaları
         tkinter.............» gui ortamlı kodlar
+        class...............» sınıflı yapılar
 
 
 devamı gelecek...
