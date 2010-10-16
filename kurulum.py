@@ -39,11 +39,7 @@ def vim():
                   'map <f3> :w\|!ruby %<cr>',
                   'map <f4> :w\|!php %<cr>', '\n',
                   'nmap <f9> :SCCompile<cr>'
-                  'nmap <c-f9> :SCCompileRun<cr>', '\n',
-                  'let g:checksyntax_auto_ruby = 1',
-                  'let g:checksyntax_auto_php  = 1',
-                  'let g:checksyntax_auto_javascript  = 1',
-                  'let g:checksyntax_auto_c = 1']
+                  'nmap <c-f9> :SCCompileRun<cr>']
 
         with open('/home/' + os.getlogin() + '/.vimrc' , 'w') as dosya:
                 [dosya.write(i+'\n') for i in kaynak]
