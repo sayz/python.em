@@ -60,7 +60,7 @@ def csvyukle(tablo, filename):
                 except: 
                         print 'bu kayıt bulunmakta'
         cursor.close()
-        conn.close()
+        con.close()
 
 def db_baglan( tablo ):
         con    = baglan()
