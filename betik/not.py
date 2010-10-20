@@ -36,8 +36,7 @@ def bas(yol, isim, yeni, bilgi):
         pdf.save()
 
 if __name__ == "__main__":
-        #yol = sys.argv[1]
-        yol = '/home/emin/Masaüstü/difdenk/'
+        yol = sys.argv[1]
         isim = yol.split('/')[-2]
         dosya = os.listdir(yol)
         dosya.sort()
