@@ -5,7 +5,7 @@
 # bir sistem kurulumu sonrasında gerekli temel paketler kurulumu
 # istediğinizi seçip istediğinizi kaldırabilirsiniz
 #
-# emineker                                              gruop 19
+# emineker                                              group 19
 ################################################################
 
 
