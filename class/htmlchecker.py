@@ -20,9 +20,7 @@ def sade(okunan):
 
 
 if __name__ == "__main__":
-        #dosya = sys.argv[1]
-        dosya = 'deneme.html'
-        with open(dosya) as dosya:
+        with open(sys.argv[1]) as dosya:
                 okunan = dosya.read().decode("utf8")
 
         (tag, kapa) = sade(okunan)
