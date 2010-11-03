@@ -18,7 +18,6 @@ def sade(okunan):
                         kapa.append(i[2:i.find('>')])
         return (tag, kapa)
 
-
 if __name__ == "__main__":
         with open(sys.argv[1]) as dosya:
                 okunan = dosya.read().decode("utf8")
