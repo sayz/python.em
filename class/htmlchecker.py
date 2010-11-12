@@ -1,38 +1,56 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+import re
+from Stacks import *
 
-import re, sys
+def HtmlChecker(Html):
 
-def sade(okunan):
-        liste = re.findall(r'<[/]*\w+[^>]*>', okunan)
-        liste = [i for i in liste if i[-2]!='/']
-
-        tag, kapa = list(), list()
-
-        for i in liste:
-                if ' ' in i:
-                        tag.append(i[1:i.find(' ')])
-                elif ' ' not in i and '/' not in i:
-                        tag.append(i[1:i.find('>')])
-                else:
-                        kapa.append(i[2:i.find('>')])
-        return (tag, kapa)
-
-if __name__ == "__main__":
-        with open(sys.argv[1]) as dosya:
-                okunan = dosya.read().decode("utf8")
-
-        (tag, kapa) = sade(okunan)
-        for i in tag:
-                if i not in kapa:
-                        print 'açılan bir', i, 'tagı kapanmamış'
-                elif okunan.find('<'+i) > okunan.find('</%s>' %i):
-                        print i, "tagı önce kapanmış sonra açılmış"
-                        kapa.remove(i)
-                else:
-                        kapa.remove(i)
-
-        for i in kapa:
-                print 'daha önce açılmayan bir', i, 'tagı kapanmış'
+    fin = open(Html)
+    fin = fin.read()
+    HtmlList = re.findall(r'<[/]*\w+[^>]*>', fin)
+    HtmlList = [i for i in HtmlList if i[-2]!='/']
+    newList = list()
+    for i in HtmlList:
+        if ' ' in i:
+            a = i.find(' ')
+            newList.append(i[:a] + '>')
+        else:
+            newList.append(i)
 
 
+    s = Stack()
+    balanced = True
+    index = 0
+
+    while index < len(newList) and balanced:
+        string = newList[index]
+        if not "/" in string:
+            s.push(string)
+        else:
+            if s.isEmpty():
+                balanced = False
+                print string,"tagi hic acilmadi!"
+            else:
+                top = s.pop()
+                if not matches(top, string):
+                    if not s.ins(string[0]+string[2:]):
+                        print string, "tagi hic acilmadi!"
+                    else:
+                        balanced = False
+                        print "Acik kalan bir", top, "tagi kapatilmadi!"
+                    s.push(top)
+
+        index = index + 1
+
+    if balanced and s.isEmpty():
+        print "Dengeli!"
+    elif balanced and not s.isEmpty():
+        print s.pop(), "tagi acik kaldi.\nDengesiz!"
+    else:
+        print "Dengesiz!"
+
+def matches(open, close):
+    i = close.find("/")
+    close = close[:i] + close[i+1:]
+    return open == close
+
+
+#HtmlChecker('index.html')
