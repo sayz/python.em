@@ -49,7 +49,8 @@ if __name__ == "__main__":
                         'DERS NOTLARI', ' ',
                         'AYŞE BEGÜM TOPYILDIZ', ' ',
                         'DERS ÖĞRETİCİSİ',
-                        'NURETTİN ŞENYER']
+                        'NURETTİN ŞENYER'
+                ]
 
         bas(yol, isim, yeni, bilgi)
 
