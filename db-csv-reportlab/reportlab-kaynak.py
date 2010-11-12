@@ -50,7 +50,7 @@ c.scale(0.5, 0.5)           # sayfayı verilen oranlarda küçültüp (0,0)'dan 
 c.setFillColor(yellow)      # yazı rengini belirler
 c.setFillColorRGB(1,0,1)    # yazı rengini RGB cinsinden verir
 c.setLineWidth(cm/4)        # çizginin kalınlığını belirler
-c.setLineWidth(.4)          # noktalı veririsek çizgiyi belirginleştirir 1 ile 9 arası bir değer
+c.setLineWidth(.4)          # noktalı verirsek çizgiyi belirginleştirir 1 ile 9 arası bir değer
 c.setStrokeColor(green)     # şekilerin renklerini belirler içlerini de doldurur
 
 c.drawInlineImage('top.jpg', 10,200, width=None,height=None)    # resim bas
