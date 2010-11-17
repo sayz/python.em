@@ -15,7 +15,7 @@ def bas(yol, isim, yeni, bilgi):
 
         # sayfanın düzenini ayarlayalım
         registerFont(TTFont('FreeSans', "/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf"))
-        pdf.setFont('FreeSans', 17)
+        pdf.setFont('FreeSans', 19)
         cm = 28.3464566929
 
         # ilk sayfa ders bilgileri
@@ -44,7 +44,7 @@ if __name__ == "__main__":
                         'ONDOKUZ MAYIS ÜNİVERSİTESİ',
                         'MÜHENDİSLİK FAKÜLTESİ',
                         'BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ',
-                        '2010-2011 » 2. SINIF 1. DÖNEM',
+                        '2010-2011 » 2. SINIF 1. DÖNEM',' ',
                         'VERİ YAPILARI',
                         'DERS NOTLARI', ' ',
                         'AYŞE BEGÜM TOPYILDIZ', ' ',
